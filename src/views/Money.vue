@@ -1,10 +1,10 @@
 <template>
   <div>
     <Layout class-prefix="layout">
-      <NumberPad/>
-      <Notes/>
-      <Tags/>
-      <Types/>
+      <NumberPad />
+      <Notes />
+      <Tags />
+      <Types xxx="hi" />
     </Layout>
   </div>
 </template>
@@ -15,7 +15,7 @@ import Tags from '@/components/Money/Tags.vue';
 import Types from '@/components/Money/Types.vue';
 export default {
   name: 'Money.vue',
-  components: {Types, Tags, Notes, NumberPad},
+  components: { Types, Tags, Notes, NumberPad },
 };
 </script>
 <style lang="scss">
@@ -25,4 +25,5 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
+
 </style>
