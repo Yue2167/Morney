@@ -8,27 +8,20 @@
     </ul>
   </div>
 </template>
-<script lang="js">
-export default {
-  name: 'Types',
-  props: ['xxx'],
-  data() {
-    return {
-      type: '-'//'-'表示支出'+'表示收入
+<script lang="ts">
+import Vue from 'vue';
+import {Component, Prop} from 'vue-property-decorator';
+
+@Component
+export default class Types extends Vue {
+  type = '-';//'-'表示支出'+'
+  selectType(type: string) {
+    if (type !== '-' && type !== '+') {
+      throw new Error('type is unknown');
     }
-  },
-  mounted() {
-    console.log(this.xxx);
-  },
-  methods: {
-    selectType(type) {//type只能是'-'和'+'中的一个
-      if (type !== '-' && type !== '+') {
-        throw new Error('type is unknown')
-      }
-      this.type = type
-    }
+    this.type = type;
   }
-};
+}
 </script>
 <style scoped lang="scss">
 @import "~@/assets/style/helper.scss";
@@ -39,7 +32,7 @@ export default {
   text-align: center;
   font-size: 20px;
 
-  >li {
+  > li {
     width: 50%;
     height: 64px;
     display: flex;
