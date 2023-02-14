@@ -4,7 +4,7 @@
       <NumberPad />
       <Notes />
       <Tags />
-      <Types :xxx="222" />
+      <Types />
     </Layout>
   </div>
 </template>
