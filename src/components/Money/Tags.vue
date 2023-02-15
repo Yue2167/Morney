@@ -1,92 +1,49 @@
 <template>
   <div class="tags">
     <ul class="current">
-      <li>
+      <li v-for="tag in dataSource" :key="tag"
+          :class="{selected:selectedTags.indexOf(tag)>=0}"
+          @click="select(tag)">
         <div class="tags-icon">
-          <Icon name="repast" />
+          <Icon name="repast"/>
+          {{tag}}
         </div>
-        <span>餐饮</span>
-      </li>
-      <li>
-        <div class="tags-icon">
-          <Icon name="medical" />
-        </div>
-        <span>医疗</span>
-      </li>
-      <li>
-        <div class="tags-icon">
-          <Icon name="shopping" />
-        </div>
-        <span>购物</span>
-      </li>
-      <li>
-        <div class="tags-icon">
-          <Icon name="traffic" />
-        </div>
-        <span>交通</span>
-      </li>
-      <li>
-        <div class="tags-icon">
-          <Icon name="house" />
-        </div>
-        <span>住宿</span>
-      </li>
-      <li>
-        <div class="tags-icon">
-          <Icon name="learning" />
-        </div>
-        <span>学习</span>
-      </li>
-      <li>
-        <div class="tags-icon">
-          <Icon name="amusement" />
-        </div>
-        <span>娱乐</span>
-      </li>
-      <li>
-        <div class="tags-icon">
-          <Icon name="dressing" />
-        </div>
-        <span>化妆</span>
-      </li>
-      <li>
-        <div class="tags-icon">
-          <Icon name="travel" />
-        </div>
-        <span>旅游</span>
-      </li>
-      <li>
-        <div class="tags-icon">
-          <Icon name="add" />
-        </div>
-        <span>添加</span>
       </li>
     </ul>
   </div>
 </template>
 <script lang="ts">
-export default {
-  name: 'Tags'
-};
+import Vue from 'vue';
+import {Component, Prop} from 'vue-property-decorator';
+
+@Component
+export default class Tags extends Vue {
+  @Prop(Array) dataSource: string[] | undefined;
+  selectedTags: string[] = [];
+  select(tag:string){
+    this.selectedTags.push(tag);
+  }
+}
 </script>
 <style scoped lang="scss">
 .tags {
   flex-grow: 1;
-  >.current {
+  > .current {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-content: center;
     overflow: auto;
-    >li {
+    > li {
       display: flex;
       width: 25%;
       padding: 12px 0;
       flex-direction: column;
       align-items: center;
       font-size: 12px;
-      >.tags-icon {
+      > .tags-icon {
         display: flex;
+        flex-direction: column;
         width: 48px;
         height: 48px;
         padding: 4px;
@@ -95,10 +52,13 @@ export default {
         margin-bottom: 4px;
         justify-content: center;
         align-items: center;
-        >.icon {
-          width: 48px;
-          height: 48px;
+        &.selected{
+          background: #B6C7A2;
         }
+        //> .icon {
+        //  width: 48px;
+        //  height: 48px;
+        //}
       }
     }
   }

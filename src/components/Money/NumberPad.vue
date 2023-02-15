@@ -5,20 +5,19 @@
       <button @click="inputContent">1</button>
       <button @click="inputContent">2</button>
       <button @click="inputContent">3</button>
-      <button @click="add">+</button>
+      <button @click="clear">清空</button>
       <button @click="inputContent">4</button>
       <button @click="inputContent">5</button>
       <button @click="inputContent">6</button>
-      <button @click="reduce">-</button>
+      <button class="delete" @click="remove">
+        <icon name="delete"></icon>
+      </button>
       <button @click="inputContent">7</button>
       <button @click="inputContent">8</button>
       <button @click="inputContent">9</button>
       <button @click="ok" class="ok">OK</button>
-      <button @click="inputContent">0</button>
+      <button @click="inputContent" class="zero">0</button>
       <button @click="inputContent">.</button>
-      <button class="delete" @click="remove">
-        <icon name="delete"></icon>
-      </button>
     </div>
   </div>
 </template>
@@ -57,13 +56,12 @@ export default class NumberPad extends Vue {
       this.output = this.output.slice(0, -1);
     }
   }
-  ok(){
-    
-  }
-  add(){
-  }
-  reduce(){
 
+  ok() {
+  }
+
+  clear() {
+    this.output = '0';
   }
 }
 </script>
@@ -96,6 +94,9 @@ export default class NumberPad extends Vue {
       &.ok {
         height: 56*2px;
         float: right;
+      }
+      &.zero{
+        width: 2*25%;
       }
     }
   }
