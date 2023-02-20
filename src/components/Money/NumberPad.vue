@@ -23,7 +23,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import {Component, Prop} from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class NumberPad extends Vue {
@@ -58,6 +58,8 @@ export default class NumberPad extends Vue {
   }
 
   ok() {
+    this.$emit('update:value', this.output)
+    this.output='0';
   }
 
   clear() {
@@ -83,7 +85,7 @@ export default class NumberPad extends Vue {
     border-radius: 6%;
     @extend %clearFix;
 
-    > button {
+    >button {
       float: left;
       width: 25%;
       height: 56px;
@@ -95,7 +97,8 @@ export default class NumberPad extends Vue {
         height: 56*2px;
         float: right;
       }
-      &.zero{
+
+      &.zero {
         width: 2*25%;
       }
     }
